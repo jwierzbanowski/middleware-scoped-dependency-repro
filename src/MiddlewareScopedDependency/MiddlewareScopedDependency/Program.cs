@@ -13,6 +13,8 @@ namespace MiddlewareScopedDependency
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
+            builder.Services.AddScoped<TestDependency>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -20,6 +22,8 @@ namespace MiddlewareScopedDependency
             {
                 app.MapOpenApi();
             }
+
+            app.UseMiddleware<TestMiddleware>();
 
             app.UseHttpsRedirection();
 
